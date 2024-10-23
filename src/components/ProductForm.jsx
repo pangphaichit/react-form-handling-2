@@ -1,6 +1,25 @@
+import { useState } from "react";
+
 function ProductForm() {
+  const [productName, setProductName] = useState("");
+  const [imageURL, setImageURL] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    const data = {
+      name: productName,
+      price: price,
+      image: imageURL,
+      description: description  
+    }
+    alert(JSON.stringify(data));
+  };
+
   return (
-    <form className="post-form">
+    <form className="post-form" onSubmit={submitHandler}>
       <h1>Create Product Form</h1>
       <div className="input-container">
         <label>
@@ -10,7 +29,9 @@ function ProductForm() {
             name="name"
             type="text"
             placeholder="Enter name here"
-            onChange={() => {}}
+            value={productName}
+            onChange={(event) => {
+              setProductName(event.target.value)}}
           />
         </label>
       </div>
@@ -22,7 +43,9 @@ function ProductForm() {
             name="image"
             type="text"
             placeholder="Enter image url here"
-            onChange={() => {}}
+            value={imageURL}
+            onChange={(event) => {
+              setImageURL(event.target.value)}}
           />
         </label>
       </div>
@@ -34,7 +57,9 @@ function ProductForm() {
             name="price"
             type="number"
             placeholder="Enter price here"
-            onChange={() => {}}
+            value={price}
+            onChange={(event) => {
+              setPrice(event.target.value)}}
           />
         </label>
       </div>
@@ -46,7 +71,9 @@ function ProductForm() {
             name="description"
             type="text"
             placeholder="Enter description here"
-            onChange={() => {}}
+            value={description}
+            onChange={(event) => {
+              setDescription(event.target.value)}}
             rows={4}
             cols={30}
           />
