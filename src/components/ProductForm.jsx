@@ -1,6 +1,22 @@
+import { useState } from "react";
+
 function ProductForm() {
+  const [productName, setName] = useState("");
+  const [productImage, setImage] = useState("");
+  const [productPrice, setPrice] = useState("");
+  const [productDescription, setDescription] = useState("");
+  const handleSubmit = () => {
+    //ฟังก์ชั่นส่ง form data ไป database
+    const data = {
+      productName: productName,
+      productImage: productImage,
+      productPrice: productPrice,
+      productDescription: productDescription,
+    };
+    alert(JSON.stringify(data));
+  };
   return (
-    <form className="post-form">
+    <form className="post-form" onSubmit={handleSubmit}>
       <h1>Create Product Form</h1>
       <div className="input-container">
         <label>
@@ -10,7 +26,9 @@ function ProductForm() {
             name="name"
             type="text"
             placeholder="Enter name here"
-            onChange={() => {}}
+            onChange={(event) => {
+              setName(event.target.value);
+            }}
           />
         </label>
       </div>
@@ -22,7 +40,9 @@ function ProductForm() {
             name="image"
             type="text"
             placeholder="Enter image url here"
-            onChange={() => {}}
+            onChange={(event) => {
+              setImage(event.target.value);
+            }}
           />
         </label>
       </div>
@@ -34,7 +54,9 @@ function ProductForm() {
             name="price"
             type="number"
             placeholder="Enter price here"
-            onChange={() => {}}
+            onChange={(event) => {
+              setPrice(event.target.value);
+            }}
           />
         </label>
       </div>
@@ -46,7 +68,9 @@ function ProductForm() {
             name="description"
             type="text"
             placeholder="Enter description here"
-            onChange={() => {}}
+            onChange={(event) => {
+              setDescription(event.target.value);
+            }}
             rows={4}
             cols={30}
           />
